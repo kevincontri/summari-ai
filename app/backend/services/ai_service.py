@@ -4,7 +4,6 @@ from app.backend.exceptions.exceptions import NotFoundError
 from app.backend.services.interfaces.ai_service import AIServiceInterface
 from app.backend.ai_settings.ai_client import GroqClient
 from app.backend.schemas.ai_schemas import *
-from app.backend.ai_settings.embedding_client import EmbeddingClient
 from langchain_community.vectorstores import FAISS
 from app.backend.ai_settings.embedding_client import embeddings
 from app.backend.ai_settings.ai_client import GroqClient
@@ -26,10 +25,11 @@ class AIService(AIServiceInterface):
         
         clean_notes = self.__prepare_notes_for_llm(ranked_notes)
         
-        enriched_prompt = PROMPT_ENHANCER.format(notes=clean_notes, user_prompt=prompt)
+        username = await self.__get_user_name(user_id)
         
-        groq = GroqClient(notes=clean_notes, prompt=enriched_prompt)
+        groq = GroqClient(notes=clean_notes, prompt=prompt, username=username)
         
+        print("Got here! ", groq)
         llm_response = await groq.chat()
 
         return PromptResponse(ai_response=llm_response)
@@ -51,6 +51,13 @@ class AIService(AIServiceInterface):
         if await self.user_repo.get_user_by_id(user_id):
             notes = await self.note_repo.get_user_notes(user_id=user_id)
             return notes
+        else:
+            raise NotFoundError("User not found")
+        
+    async def __get_user_name(self, user_id: int):
+        user = await self.user_repo.get_user_by_id(user_id)
+        if user:
+            return user["username"] 
         else:
             raise NotFoundError("User not found")
         

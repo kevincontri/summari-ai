@@ -10,3 +10,4 @@ async def test_ask():
     result = await ai_service.ask(user_id=1, prompt="Test Prompt")
     assert result
     assert result.ai_response
+    print("Result: ", result.ai_response)
