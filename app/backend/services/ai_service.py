@@ -18,6 +18,7 @@ class AIService(AIServiceInterface):
         self.note_repo = note_repo
         self.user_repo = user_repo
 
+    # Main function for AI, fetch user notes and format prompt for LLM
     async def ask(self, user_id: int, prompt: str):
         user_notes = await self.__get_user_notes(user_id)
   
@@ -33,6 +34,7 @@ class AIService(AIServiceInterface):
 
         return PromptResponse(ai_response=llm_response)
 
+    # Function to rank notes using FAISS
     async def __rank_notes(self, prompt: str, notes: list):
         
         text_embeddings = [(n["content"], n["embedding"]) for n in notes if n.get("embedding")]
@@ -44,13 +46,13 @@ class AIService(AIServiceInterface):
         results = await store.asimilarity_search_with_relevance_scores(prompt, k=5)
         
         return [doc.metadata for doc, score in results if score > 0.4]
-        
+    
     async def __get_user_notes(self, user_id: int):
         if await self.user_repo.get_user_by_id(user_id):
             notes = await self.note_repo.get_user_notes(user_id=user_id)
             return notes
         else:
             raise NotFoundError("User not found")
-
+        
     def __prepare_notes_for_llm(self, notes):
         return [{"title": note["title"], "content": note["content"]} for note in notes]

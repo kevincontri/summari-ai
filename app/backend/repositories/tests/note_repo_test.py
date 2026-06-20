@@ -1,5 +1,5 @@
 import pytest
-from .note_repository import NoteRepository
+from ..note_repository import NoteRepository
 
 repo = NoteRepository()
 
