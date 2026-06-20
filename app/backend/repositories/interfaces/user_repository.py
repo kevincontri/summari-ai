@@ -1,0 +1,20 @@
+from abc import ABC, abstractmethod
+
+
+class UserRepositoryInterface(ABC):
+
+    @abstractmethod
+    async def create_user(self, username: str, password: str, email: str):
+        pass
+
+    @abstractmethod
+    async def get_user_by_id(self, user_id: int):
+        pass
+
+    @abstractmethod
+    async def get_all_users(self):
+        pass
+
+    @abstractmethod
+    async def get_user_by_email(self, email: str):
+        pass

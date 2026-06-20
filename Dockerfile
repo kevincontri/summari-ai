@@ -27,4 +27,4 @@ ENV PATH="/app/venv/bin:$PATH"
 
 USER appuser
 
-CMD ["uvicorn", "app.server.server:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app.backend.server.server:app", "--host", "0.0.0.0", "--port", "8000"]

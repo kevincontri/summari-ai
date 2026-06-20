@@ -8,3 +8,5 @@ __pycache__
 .claude
 conversation_log.md
 notes.md
+node_modules
+dist

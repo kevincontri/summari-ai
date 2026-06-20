@@ -1,5 +1,12 @@
 # AI Knowledge Base API
 
+> Note: This project is currently under update, what's coming:
+> - Frontend interface
+> - Langchain code refactoring for better AI usage and complexity abstraction
+> - Test coverage improvement
+> - Project architecture rearrangement for better overall organization
+> - Cloud deploy
+
 A backend service that provides a RESTful API for storing, searching, and querying user content (notes, articles, ideas) and augmenting them with local AI features such as embeddings and local LLM answers (via Ollama).
 
 

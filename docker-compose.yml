@@ -8,22 +8,21 @@ services:
     env_file:
       - .env
     environment:
-      - OLLAMA_URL=http://ollama:11434
       - DATABASE_URL=postgresql+asyncpg://postgres:postgres@db:5432/project4
     depends_on:
       db:
-        condition: service_healthy
-      ollama:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 20s
+      start_period: 10s
 
   db:
     image: postgres:16
+    ports:
+      - "5434:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -35,20 +34,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 10s
-
-  ollama:
-    image: ollama/ollama
-    volumes:
-      - ollama_data:/root/.ollama
-    entrypoint: ["/bin/sh", "-c", "ollama serve & sleep 5 && ollama pull nomic-embed-text && ollama pull phi3:mini && wait"]
-    healthcheck:
-      test: ["CMD", "ollama", "list"]
-      interval: 10s
-      timeout: 10s
-      retries: 10
-      start_period: 60s
+      start_period: 5s
 
 volumes:
-  ollama_data:
   postgres_data:

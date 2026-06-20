@@ -1,0 +1,13 @@
+from sqlalchemy import Table, Column, Integer, String
+from datetime import datetime
+from app.backend.database.base import metadata
+
+User = Table(
+    "users",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("username", String),
+    Column("email", String),
+    Column("password_hash", String),
+    Column("created_at", String, default=str(datetime.now().isoformat())),
+)

@@ -3,7 +3,7 @@ import os
 
 if __name__ == "__main__":
     uvicorn.run(
-        "app.server.server:app",
+        "app.backend.server.server:app",
         host="127.0.0.1",
         port=int(os.environ.get("PORT", 8000)),
         reload=True
