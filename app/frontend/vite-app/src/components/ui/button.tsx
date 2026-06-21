@@ -18,7 +18,7 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
-        login_page:"mt-5 w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-4xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 shadow-[0_10px_30px_-5px_rgba(50,255,0,0.55)] transition duration-200 cursor-pointer",
+        login_page:"mt-5 w-full bg-[rgba(208,109,61,1.0)] hover:bg-[rgba(208,109,61,0.8)] text-white font-bold py-2 px-4 rounded-4xl focus:outline-none focus:ring-2 focus:ring-[rgb(150, 78, 45)]focus:ring-opacity-50 shadow-[0_10px_30px_-5px_rgba(208,109,61,0.3)] transition duration-200 cursor-pointer",
       },
       size: {
         default:

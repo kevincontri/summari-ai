@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.tsx'
 
 async function enableMocking() {
-  // return; // Disable MSW for now.
+  //return; // Disable MSW for now.
   // @ts-ignore
   if (import.meta.env.MODE !== "development") return;
   const { worker } = await import("./mocks/browser.js");

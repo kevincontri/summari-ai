@@ -8,18 +8,15 @@ export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const { login } = useAuthStore((state) => state);
+  const login = useAuthStore((state) => state.login);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setLoading(true);
-    try {
-      await login(email, password, navigate);
-    } finally {
-      setLoading(false);
-    }
+    await login(email, password, navigate);
+    setLoading(false);
   };
 
   return (
@@ -71,9 +68,9 @@ export default function Login() {
             </Link>
           </p>
         </div>
-        <footer className="absolute bottom-4 text-sm text-gray-500">
-          <p>Feito por <a href="https://github.com/KevinContri" target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-700">
-            Kevin Contri
+        <footer className="absolute bottom-4 text-sm">
+          <p>Feito por <a href="https://github.com/KevinContri" target="_blank" rel="noopener noreferrer" className="footer">
+          Kevin Contri
           </a></p>
         </footer>
         { loading && 

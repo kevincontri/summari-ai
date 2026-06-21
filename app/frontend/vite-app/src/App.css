@@ -140,7 +140,7 @@ h1 {
 
 @layer login-utils {
   .login-page {
-    @apply relative p-6 h-screen bg-gradient-to-l from-[#f5f7f3] to-[#e9faee] flex items-center justify-center flex-col font-display bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.20),_transparent)];
+    @apply relative p-6 h-screen flex items-center justify-center flex-col font-display bg-[radial-gradient(circle_at_top_right,_rgba(208,109,61,0.3),_transparent)];
   }
 
   .logo-img {
@@ -156,7 +156,7 @@ h1 {
   }
 
   .form-description {
-    @apply text-xl text-gray-600 mb-6;
+    @apply text-lg text-gray-600 mb-6;
   }
 
   .input-label {
@@ -164,7 +164,7 @@ h1 {
   }
 
   .footer {
-    @apply font-medium text-green-600 hover:text-green-500;
+    @apply font-medium text-[#D06D3D] hover:text-[#A85B2E];
   }
 
   .loading-overlay {
