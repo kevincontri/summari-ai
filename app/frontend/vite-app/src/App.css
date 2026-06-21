@@ -138,24 +138,17 @@ h1 {
   }
 }
 
-@layer login-utilities {
+@layer login-utils {
   .login-page {
-    @apply relative h-screen bg-gradient-to-l from-[#f5f7f3] to-[#e9faee] flex items-center justify-center flex-col font-display;
-  }
-  .logo {
-    @apply absolute top-0 left-0 w-full p-4 flex items-center justify-start space-x-3;
+    @apply relative p-6 h-screen bg-gradient-to-l from-[#f5f7f3] to-[#e9faee] flex items-center justify-center flex-col font-display bg-[radial-gradient(circle_at_top_left,_rgba(34,197,94,0.20),_transparent)];
   }
 
   .logo-img {
-    @apply h-8 overflow-hidden cursor-pointer;
+    @apply h-6 overflow-hidden cursor-pointer drop-shadow-[0_4px_6px_rgba(34,197,94,0.5)];
   }
 
   .logo-text {
     @apply text-gray-700 hover:text-gray-900 font-bold [text-shadow:2px_2px_4px_rgba(0,0,0,0.2)];
-  }
-
-  .form-container {
-    @apply bg-white rounded-xl shadow-lg p-10 w-full max-w-md space-y-1 flex flex-col;
   }
 
   .form-welcome {

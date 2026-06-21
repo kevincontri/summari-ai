@@ -25,11 +25,11 @@ export default function Login() {
   return (
     <>
       <div className="login-page">
-        <div className="logo">
-          <img src="./src/assets/summari-logo.svg" alt="Logo" className="logo-img" onClick={(e) => {window.location.href = "/";}} />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full p-4 flex items-center justify-center space-x-3 sm:left-0 sm:translate-x-0 sm:justify-start">
+          <img src="./src/assets/summari-logo.png" alt="Logo" className="logo-img" onClick={() => {window.location.href = "/";}} />
           <a href="/" className="logo-text">Summari</a>
         </div>
-        <div className="form-container">
+        <div className="bg-white rounded-4xl shadow-lg p-10 w-full max-w-md space-y-1 flex flex-col mxsm:justify-center sm:h-auto">
           <p className="form-welcome">Welcome!</p>
           <p className="form-description">Sign in to your second brain.</p>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -71,6 +71,11 @@ export default function Login() {
             </Link>
           </p>
         </div>
+        <footer className="absolute bottom-4 text-sm text-gray-500">
+          <p>Feito por <a href="https://github.com/KevinContri" target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-green-700">
+            Kevin Contri
+          </a></p>
+        </footer>
         { loading && 
         <div className="loading-overlay">
           <div className="loading-spinner"></div>
