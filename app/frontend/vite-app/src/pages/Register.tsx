@@ -22,9 +22,9 @@ export default function Register() {
 
   return (
     <>
-<div className="login-page">
+<div className="page">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full p-4 flex items-center justify-center space-x-3 sm:left-0 sm:translate-x-0 sm:justify-start">
-          <img src="./src/assets/summari-logo.png" alt="Logo" className="logo-img" onClick={() => {window.location.href = "/";}} />
+          <img src="./src/assets/summari-logo.svg" alt="Logo" className="logo-img" onClick={() => {window.location.href = "/";}} />
           <a href="/" className="logo-text">Summari</a>
         </div>
         <div className="bg-white rounded-4xl shadow-lg p-10 w-full max-w-md space-y-1 flex flex-col mxsm:justify-center sm:h-auto">
