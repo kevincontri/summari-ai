@@ -1,5 +1,6 @@
 import {http, HttpResponse } from "msw";
 import type { LoginRequest, RegisterRequest, TokenResponse, UserBase } from "../types/auth_types";
+import type { AIResponse } from "../types/ai_types";
 
 export const handlers = [
   // Mock for login endpoint
@@ -54,5 +55,11 @@ export const handlers = [
         user_id: 1
       }
     ]}, { status: 200 });
+  }),
+
+  // Mock for AI response
+  http.post<any, { prompt: string }, AIResponse>("*/ai/ask", async ({ request }) => {
+    const { prompt } = await request.json();
+    return HttpResponse.json({ ai_response: `This is the AI response for the prompt: ${prompt}` }, { status: 200 });
   }),
 ];

@@ -8,9 +8,11 @@ import Loading from "../components/Loading";
 import Header from "../components/Header";
 import InputAI from "../components/InputAI";
 import { useState, useMemo } from "react";
+import { getAIResponse } from "../api/ai";
 
 export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [aiQuery, setAIQuery] = useState<string>("");
 
   const fetchNotes = async (): Promise<NoteResponse> => await getNotes();
   
@@ -40,12 +42,12 @@ export default function Dashboard() {
 
   const handleSubmitToAI = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+    const aiResponse = await getAIResponse(aiQuery);
+    // TODO: Handle the AI response, displaying in the UI.
   }
 
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
-
-
 
   return (
     <>
@@ -54,7 +56,7 @@ export default function Dashboard() {
     }
     <div className="dashboard-page">
       <Header logout={logout} navigate={navigate} handleSearch={handleSearch} searchQuery={searchQuery} />
-      <InputAI handleSubmit={handleSubmitToAI} />
+      <InputAI handleSubmit={handleSubmitToAI} aiQuery={aiQuery} setAIQuery={setAIQuery} />
       <NotesGrid 
         notes={filteredNotes}
         count={filteredNotes.length} />
