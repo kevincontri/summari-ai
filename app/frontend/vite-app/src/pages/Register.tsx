@@ -3,6 +3,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../contexts/useAuthStore";
+import Loading from "../components/Loading";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -86,9 +87,7 @@ export default function Register() {
           </a></p>
         </footer>
         { loading && 
-        <div className="loading-overlay">
-          <div className="loading-spinner"></div>
-        </div> 
+        <Loading /> 
         }
       </div>
     </>

@@ -140,7 +140,7 @@ h1 {
 
 @layer login-utils {
   .page {
-    @apply relative p-6 h-screen flex items-center justify-center flex-col font-display bg-[radial-gradient(circle_at_top_right,_rgba(208,109,61,0.3),_transparent)];
+    @apply relative p-6 h-screen flex items-center justify-center flex-col font-display bg-[radial-gradient(circle_at_top_right,rgba(208,109,61,0.3),transparent)];
   }
 
   .logo-img {
@@ -178,12 +178,28 @@ h1 {
 }
 
 @layer dashboard-utils {
+  .dashboard-page {
+    @apply p-6 h-full flex flex-col font-display bg-[#FAF3EE] md:px-32 md:py-12;
+  }
   .header {
-    @apply flex flex-row items-center justify-between mb-8;
+    @apply md:flex md:flex-row items-center justify-between mb-8;
+  }
+  .header-nav {
+    @apply flex flex-row items-center justify-between md:justify-start space-x-2 mb-6 md:mb-0;
+  }
+  .header-logo {
+    @apply flex gap-2 items-center;
+  }
+  .header-right {
+    @apply flex flex-row items-center space-x-3;
   }
 
-  .logout-container {
-    @apply bg-[#f4b89c] rounded-md h-9 px-3 flex items-center justify-center cursor-pointer hover:bg-[#D06D3D] transition;
+  .logout-container-mobile {
+    @apply md:hidden flex bg-[#f4b89c] rounded-md h-9 px-3 items-center justify-center cursor-pointer hover:bg-[#D06D3D] transition;
+  }
+
+  .logout-container-desktop {
+    @apply hidden md:flex bg-[#f4b89c] rounded-md h-9 px-3 items-center justify-center cursor-pointer hover:bg-[#D06D3D] transition;
   }
 
   .logout-icon {
@@ -191,15 +207,11 @@ h1 {
   }
 
   .input-container {
-    @apply flex flex-row items-center bg-white/80 rounded-xl w-75 h-10 max-w-md border-[0.5px] border-gray-200;
+    @apply flex flex-row items-center bg-white/80 rounded-xl w-full md:w-75 h-10 max-w-md border-[0.5px] border-gray-200;
   }
 
   .search-icon {
-    @apply h-4 mt-1 px-3;
-  }
-
-  .dashboard-page {
-    @apply px-32 py-12 h-screen flex flex-col font-display bg-[#FAF3EE];
+    @apply h-4 mt-1 px-3 cursor-pointer;
   }
 
   .ai-input-container {
@@ -207,14 +219,14 @@ h1 {
   }
 
   .ai-icon-container {
-    @apply bg-[#FFE5D2] rounded-md h-9 w-10 flex items-center justify-center;
+    @apply bg-[#FFE5D2] rounded-md h-8 w-10 md:h-9 md:w-10 flex items-center justify-center;
   }
   .ai-icon {
     @apply h-5 pr-0.5;
   }
 
   .send-icon-container {
-    @apply bg-[#D06D3D] rounded-md h-9 w-10 flex items-center justify-center cursor-pointer hover:bg-[#FFE5c2] transition;
+    @apply bg-[#D06D3D] rounded-md h-8 w-10 md:h-9 md:w-10 flex items-center justify-center cursor-pointer hover:bg-[#FFE5c2] transition;
   }
   .send-icon {
     @apply h-4;

@@ -3,6 +3,7 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../contexts/useAuthStore";
+import Loading from "../components/Loading";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
@@ -74,9 +75,7 @@ export default function Login() {
           </a></p>
         </footer>
         { loading && 
-        <div className="loading-overlay">
-          <div className="loading-spinner"></div>
-        </div> 
+        <Loading /> 
         }
       </div>
     </>
