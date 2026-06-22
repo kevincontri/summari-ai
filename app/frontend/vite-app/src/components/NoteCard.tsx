@@ -1,5 +1,6 @@
 import type { NoteBase } from "../types/notes_types";
 import { useMemo } from "react";
+import { Trash } from 'lucide-react'
 
 const bgColors = [
   "bg-[#F7C9A4]",
@@ -22,12 +23,17 @@ export default function NoteCard({ note }: { note: NoteBase }) {
   }, []);
 
   return (
-    <div className={`flex flex-col justify-between h-48 rounded-xl p-4 shadow-md transition ${randomBg} cursor-pointer hover:transform hover:scale-[1.02] hover:shadow-xl`}>
+    <div className={`group flex flex-col justify-between h-48 rounded-xl p-4 shadow-md transition ${randomBg} cursor-pointer hover:transform hover:scale-[1.02] hover:shadow-xl`}>
       <div>
         <h3 className="font-semibold mb-2">{note.title}</h3>
         <p className="text-sm text-gray-700 mb-3 line-clamp-3">{note.content}</p>
       </div>
+      <div className="flex justify-between items-center">
       <span className="text-xs text-gray-700 text-bottom font-bold">{dateStr}</span>
+      <div className="hidden group-hover:block hover:bg-[rgba(208,109,61,0.3)] rounded-md p-1">
+        <Trash className="h-4 cursor-pointer" />
+      </div>
+      </div>
     </div>
   );
 }

@@ -21,4 +21,38 @@ export const handlers = [
       created_at: new Date().toISOString()
     }, { status: 201 });
   }),
+
+  // Mock for fetching notes
+  http.get("*/notes", async () => {
+    return HttpResponse.json({ count: 4, data: [
+      {
+        id: 1,
+        title: "First note",
+        content: "This is the first note",
+        created_at: new Date().toISOString(),
+        user_id: 1
+      },
+      {
+        id: 2,
+        title: "Second note",
+        content: "This is the second note",
+        created_at: new Date().toISOString(),
+        user_id: 1
+      },
+      {
+        id: 3,
+        title: "Third note",
+        content: "This is the third note",
+        created_at: new Date().toISOString(),
+        user_id: 1
+      },
+      {
+        id: 4,
+        title: "Fourth note",
+        content: "This is the fourth note",
+        created_at: new Date().toISOString(),
+        user_id: 1
+      }
+    ]}, { status: 200 });
+  }),
 ];

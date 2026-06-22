@@ -1,7 +1,7 @@
 import api from './axios';
-import type { NoteBase } from '../types/notes_types';
+import type { NoteBase, NoteResponse } from '../types/notes_types';
 
-export const getNotes = async (): Promise<NoteBase[]> => {
+export const getNotes = async (): Promise<NoteResponse> => {
     const response = await api.get('/notes');
     return response.data;
 }
