@@ -1,6 +1,6 @@
 import { Input } from "../components/ui/input";
 
-export default function Header({ logout, navigate }: { logout: (navigate: (path: string) => void) => void; navigate: any }) {
+export default function Header({ logout, navigate, handleSearch, searchQuery }: { logout: (navigate: (path: string) => void) => void; navigate: any; handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void; searchQuery: string }) {
   return (
     <div className="header">
       <div className="header-nav">
@@ -15,7 +15,12 @@ export default function Header({ logout, navigate }: { logout: (navigate: (path:
       <div className="header-right">  
         <div className="input-container">
           <img src="./src/assets/search.png" alt="Search Icon" className="search-icon" />
-          <Input placeholder="Search your notes..." variant="dashboard" className="placeholder:text-gray-700 placeholder:text-md"/>
+          <Input 
+            placeholder="Search your notes..." 
+            variant="dashboard" 
+            className="placeholder:text-gray-700 placeholder:text-md"
+            value={searchQuery}
+            onChange={handleSearch}/>
         </div>
         <div onClick={() => logout(navigate)} className="logout-container-desktop" title="Logout">
             <img src="./src/assets/logout.png" alt="Logout Icon" className="logout-icon" />
