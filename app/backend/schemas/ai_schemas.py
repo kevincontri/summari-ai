@@ -7,3 +7,4 @@ class AskRequest(BaseModel):
 
 class PromptResponse(BaseModel):
     ai_response: str
+    related_notes: list

@@ -248,7 +248,10 @@ h1 {
     @apply text-gray-700;
   }
   .note-opener-container {
-    @apply bg-[#FAF3EE] rounded-md py-1 md:py-0 md:h-8 px-2 md:w-75 flex w-full flex-row items-center space-x-2 mt-3 border-[0.5px] border-gray-300 hover:border-[#D06D3D] transition cursor-pointer;
+    @apply bg-[#FAF3EE] rounded-md py-1 md:py-0 md:h-8 px-2 md:w-full flex flex-row w-80 items-center space-x-2 mt-3 border-[0.5px] border-gray-300 hover:border-[#D06D3D] transition cursor-pointer;
+  }
+  .loading-container {
+    @apply flex items-center justify-center w-full h-20;
   }
   .note-opener {
     @apply text-sm text-gray-600 hover:text-gray-800 cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap;

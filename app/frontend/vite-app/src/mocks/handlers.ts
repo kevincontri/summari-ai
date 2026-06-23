@@ -1,4 +1,4 @@
-import {http, HttpResponse } from "msw";
+import {http, delay, HttpResponse } from "msw";
 import type { LoginRequest, RegisterRequest, TokenResponse, UserBase } from "../types/auth_types";
 import type { AIResponse } from "../types/ai_types";
 
@@ -60,6 +60,8 @@ export const handlers = [
   // Mock for AI response
   http.post<any, { prompt: string }, AIResponse>("*/ai/ask", async ({ request }) => {
     const { prompt } = await request.json();
-    return HttpResponse.json({ ai_response: `This is the AI response for the prompt: ${prompt}` }, { status: 200 });
+    await delay(2000); // Simulate a delay for the AI response
+    return HttpResponse.json(
+      { ai_response: `This is the AI response for the prompt: ${prompt}`, related_notes: [{"id": 1, "title": "First note", "content": "This is the first note", "user_id": 1, "created_at": "2022-01-01T00:00:00.000Z"}, {"id": 2, "title": "Second note", "content": "This is the second note", "user_id": 1, "created_at": "2022-01-01T00:00:00.000Z"}] }, { status: 200 });
   }),
 ];
