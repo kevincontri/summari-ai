@@ -23,7 +23,6 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
   logout: (navigate) => {
-    if (!confirm("Are you sure you want to logout?")) return;
     localStorage.removeItem('token');
     set({ token: null });
     navigate('/login');

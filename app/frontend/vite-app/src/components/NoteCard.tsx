@@ -1,6 +1,7 @@
 import type { NoteBase } from "../types/notes_types";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Trash } from 'lucide-react'
+import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from "./ui/alert-dialog";
 
 const bgColors = [
   "bg-[#F7C9A4]",
@@ -9,7 +10,8 @@ const bgColors = [
   "bg-[#F5E0B3]",
 ];
 
-export default function NoteCard({ note, handleOpenNoteModal }: { note: NoteBase, handleOpenNoteModal: (id: number | null, bg_color?: string) => void }) {
+export default function NoteCard({ note, handleOpenNoteModal, onDelete }: { note: NoteBase, handleOpenNoteModal: (id: number | null, bg_color?: string) => void, onDelete: (id: number) => void }) {
+  const [open, setOpen] = useState(false);
 
   const dateObj = new Date(note.created_at);
   const dateStr = dateObj.toLocaleDateString("en-US", {
@@ -31,8 +33,33 @@ export default function NoteCard({ note, handleOpenNoteModal }: { note: NoteBase
       <div className="flex justify-between items-center">
       <span className="text-xs text-gray-700 text-bottom font-bold">{dateStr}</span>
       <div className="hidden group-hover:block hover:bg-[rgba(208,109,61,0.3)] rounded-md p-1">
-        <Trash className="h-4 cursor-pointer" />
+      <div onClick={(e) => {e.stopPropagation();}}> 
+        <AlertDialog open={open} onOpenChange={setOpen}>
+          <AlertDialogTrigger>
+            <Trash className="h-4 cursor-pointer" />
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Confirm Delete</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to delete this note? This action cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel onClick={() => setOpen(false)}>Cancel</AlertDialogCancel>
+              <AlertDialogAction 
+              className="bg-[#D06D3D]" 
+              onClick={() => {
+                onDelete(note.id)
+                setOpen(false);
+                }}>
+                  Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
+      </div>  
       </div>
     </div>
   );

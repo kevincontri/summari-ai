@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 import type { NoteBase } from "@/types/notes_types";
 import NoteReference from "./NoteReference";
 
-export default function AIMessageOutput({ aiResponse, showAIOutput, setShowAIOutput, loadingAI, relatedNotes }: { aiResponse: string | null; showAIOutput: boolean; setShowAIOutput: (show: boolean) => void; loadingAI: boolean; relatedNotes: NoteBase[] | null }) {
+export default function AIMessageOutput({ aiResponse, showAIOutput, setShowAIOutput, loadingAI, relatedNotes, handleOpenNoteModal }: { aiResponse: string | null; showAIOutput: boolean; setShowAIOutput: (show: boolean) => void; loadingAI: boolean; relatedNotes: NoteBase[] | null; handleOpenNoteModal: (noteId: number) => void; }) {
   return (
     <Transition
       show={Boolean(showAIOutput)}
@@ -37,7 +37,7 @@ export default function AIMessageOutput({ aiResponse, showAIOutput, setShowAIOut
         </div>
         <div className="flex flex-col md:flex-row items-center md:space-x-2">
           {relatedNotes?.map((note) => (
-            <NoteReference key={note.id} note={note} />
+            <NoteReference key={note.id} note={note} handleOpenNoteModal={handleOpenNoteModal} />
           ))}
         </div>
       </div>

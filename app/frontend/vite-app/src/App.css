@@ -276,6 +276,6 @@ h1 {
   }
 
   .new-btn {
-    @apply flex flex-col items-center justify-center border border-dashed border-gray-300 rounded-xl hover:border-[#D06D3D] transition h-48 cursor-pointer;
+    @apply flex flex-col items-center justify-center border-[0.5px] border-dashed border-gray-200 rounded-xl hover:border-[#D06D3D] transition h-48 cursor-pointer;
   }
 }

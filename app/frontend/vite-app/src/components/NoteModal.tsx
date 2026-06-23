@@ -13,7 +13,7 @@ export default function NoteModal({ setShowNoteModal, handleCreateNote, isCreati
   });
 
   return (
-    <div className="absolute top-0 left-0 w-full h-screen z-100 flex items-center justify-center md:backdrop-blur-xs backdrop-blur-xs rounded-xl md:bg-black/30 md:p-0 p-5" onClick={() => setShowNoteModal(false)}>
+    <div className="fixed inset-0 w-full h-screen z-100 flex items-center justify-center md:backdrop-blur-xs backdrop-blur-xs bg-black/30 md:p-0 p-5" onClick={() => setShowNoteModal(false)}>
       <div className={`${bg_color ?? "bg-[#F7C9A4]"} p-4 rounded-lg shadow-xl w-full max-w-md`} onClick={(e) => e.stopPropagation()}>
         <Input 
           type="text"

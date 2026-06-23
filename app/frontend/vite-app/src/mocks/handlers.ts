@@ -78,4 +78,10 @@ export const handlers = [
     const noteId = parseInt(params.id as string, 10);
     return HttpResponse.json({ id: noteId, title, content, created_at: new Date().toISOString(), user_id: 1 }, { status: 200 });
   }),
+
+  // Mock for deleting a note
+  http.delete<any, any, { message: string }>("*/notes/:id", async ({ params }) => {
+    const noteId = parseInt(params.id as string, 10);
+    return HttpResponse.json({ message: `Note with id ${noteId} deleted successfully` }, { status: 200 });
+  }),
 ];

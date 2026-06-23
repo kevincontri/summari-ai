@@ -70,6 +70,18 @@ export default function Dashboard() {
     }
   });
 
+  const { mutate: deleteNoteMutation } = useMutation({
+    mutationFn: async (noteId: number) => await deleteNote(noteId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['notes'] });
+      toast.success("Note deleted successfully!");
+    },
+    onError: (error) => {
+      toast.error("Error deleting note: " + (error as Error).message);
+      console.error("Error deleting note:", error);
+    }
+  });
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   }
@@ -85,12 +97,12 @@ export default function Dashboard() {
   const handleSubmitToAI = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     // Validation of input
     if (!aiQuery.trim()) {
-      toast.error("Please enter a query for the AI.");
+      toast.warning("Please enter a query for the AI.");
       setLoadingAI(false);
       return;
     }
     else if (aiQuery.trim().length < 8) {
-      toast.error("Please enter a longer query for the AI.");
+      toast.warning("Please enter a longer query for the AI.");
       setLoadingAI(false);
       return;
     }
@@ -142,6 +154,10 @@ export default function Dashboard() {
     setShowNoteModal(true);
   }
 
+  const handleDeleteNote = async (note_id: number) => {
+    await deleteNoteMutation(note_id);
+  }
+
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
 
@@ -155,12 +171,13 @@ export default function Dashboard() {
     <div className="dashboard-page">
       <Header logout={logout} navigate={navigate} handleSearch={handleSearch} searchQuery={searchQuery} />
       
-      <InputAI handleSubmit={handleSubmitToAI} aiQuery={aiQuery} setAIQuery={setAIQuery} aiResponse={aiResponse} relatedNotes={relatedNotes} showAIOutput={showAIOutput} setShowAIOutput={setShowAIOutput} loadingAI={loadingAI}/>
+      <InputAI handleSubmit={handleSubmitToAI} aiQuery={aiQuery} setAIQuery={setAIQuery} aiResponse={aiResponse} relatedNotes={relatedNotes} showAIOutput={showAIOutput} setShowAIOutput={setShowAIOutput} loadingAI={loadingAI} handleOpenNoteModal={handleOpenNoteModal} />
 
       <NotesGrid 
         notes={filteredNotes}
         count={filteredNotes.length}
-        handleOpenNoteModal={handleOpenNoteModal} />
+        handleOpenNoteModal={handleOpenNoteModal} 
+        onDelete={handleDeleteNote} />
 
       {showNoteModal && 
         <NoteModal 
