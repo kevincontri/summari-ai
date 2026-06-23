@@ -131,10 +131,10 @@ h1 {
     @apply border-border outline-ring/50 m-0 p-0 box-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground min-h-screen;
   }
   html {
-    @apply font-sans;
+    @apply font-sans antialiased min-h-screen;
   }
 }
 
@@ -179,7 +179,7 @@ h1 {
 
 @layer dashboard-utils {
   .dashboard-page {
-    @apply p-6 h-full flex flex-col font-display bg-[#FAF3EE] md:px-32 md:py-12;
+    @apply p-6 min-h-screen flex flex-col font-display bg-[#FAF3EE] md:px-32 md:py-12;
   }
   .header {
     @apply md:flex md:flex-row items-center justify-between mb-8;

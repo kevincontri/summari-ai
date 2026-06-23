@@ -13,7 +13,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   login: async (email, password, navigate) => {
     try {
       const response = await api.post('/auth/login', { email, password });
-      const { newToken } = response.data.access_token;
+      const newToken = response.data.access_token;
       localStorage.setItem('token', newToken);
       set({ token: newToken });
       navigate('/dashboard');

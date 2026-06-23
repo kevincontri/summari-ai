@@ -29,7 +29,6 @@ class AIService(AIServiceInterface):
         
         groq = GroqClient(notes=clean_notes, prompt=prompt, username=username)
         
-        print("Got here! ", groq)
         llm_response = await groq.chat()
 
         return PromptResponse(ai_response=llm_response, related_notes=ranked_notes[:2])
@@ -39,7 +38,15 @@ class AIService(AIServiceInterface):
         
         text_embeddings = [(n["content"], n["embedding"]) for n in notes if n.get("embedding")]
         
-        metadatas = [{"title": n["title"], "content": n["content"]} for n in notes if n.get("embedding")]
+        metadatas = [
+            {
+                "id": n["id"],
+                "title": n["title"],
+                "content": n["content"],
+                "created_at": n["created_at"],
+            }
+            for n in notes if n.get("embedding")
+        ]
         
         store = FAISS.from_embeddings(text_embeddings=text_embeddings, embedding=embeddings, metadatas=metadatas)
         

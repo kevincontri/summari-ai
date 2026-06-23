@@ -2,7 +2,7 @@ import NotesGrid from "../components/NotesGrid";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getNotes, createNote, updateNote, deleteNote } from "../api/notes";
 import { useAuthStore } from "../contexts/useAuthStore";
-import type { NoteBase, NoteResponse, NoteCreateRequest, NoteUpdateRequest } from "../types/notes_types";
+import type { NoteBase, NoteCreateRequest, NoteUpdateRequest } from "../types/notes_types";
 import { useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import Header from "../components/Header";
@@ -29,10 +29,10 @@ export default function Dashboard() {
 
   const queryClient = useQueryClient();
 
-  const fetchNotes = async (): Promise<NoteResponse> => await getNotes();
+  const fetchNotes = async (): Promise<NoteBase[] | []> => await getNotes();
   
   // Fetch notes from API
-  const { data: notes, isLoading: notesLoading, error: notesError } = useQuery<NoteResponse>({
+  const { data: notes, isLoading: notesLoading, error: notesError } = useQuery<NoteBase[] | []>({
     queryKey: ['notes'],
     queryFn: fetchNotes,
     staleTime: 1000 * 60 * 5 // 5 minutes
@@ -88,7 +88,7 @@ export default function Dashboard() {
 
   // Search tool
   const filteredNotes = useMemo(() => {
-    const all = notes?.data ?? [];
+    const all = notes ?? [];
     const q = searchQuery.trim().toLowerCase(); 
     if (!q) return all; // If search query is empty, return all notes
     return all.filter(note => note.title.toLowerCase().includes(q) || note.content.toLowerCase().includes(q)); // Filter notes based on title or content matching the search query
@@ -143,7 +143,7 @@ export default function Dashboard() {
 
   const handleOpenNoteModal = (note_id: number | null, bg_color?: string) => {
     const selectedNote = note_id
-      ? (notes?.data.find(note => note.id === note_id) ?? null)
+      ? (notes?.find(note => note.id === note_id) ?? null)
       : null;
 
     setBgColor(bg_color);

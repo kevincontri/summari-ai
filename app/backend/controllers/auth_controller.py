@@ -17,7 +17,7 @@ async def create_user(
     return SingleUserResponse(user=user)
 
 
-@auth_router.post("/login")
+@auth_router.post("/login", status_code=200)
 async def login(body: UserLogin, user_service: UserService = Depends(get_user_service)):
     try:
         token = await user_service.verify_user_credentials(body.email, body.password)

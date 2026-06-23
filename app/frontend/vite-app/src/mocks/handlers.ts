@@ -1,7 +1,7 @@
 import {http, delay, HttpResponse } from "msw";
 import type { LoginRequest, RegisterRequest, TokenResponse, UserBase } from "../types/auth_types";
 import type { AIResponse } from "../types/ai_types";
-import type { NoteBase, NoteResponse, NoteCreateRequest, NoteUpdateRequest } from "../types/notes_types";
+import type { NoteBase, NoteCreateRequest, NoteUpdateRequest } from "../types/notes_types";
 
 export const handlers = [
   // Mock for login endpoint
@@ -25,8 +25,9 @@ export const handlers = [
   }),
 
   // Mock for fetching notes
-  http.get<any, any, NoteResponse>("*/notes", async () => {
-    return HttpResponse.json({ count: 4, data: [
+  http.get<any, any, any>("*/notes", async () => {
+    return HttpResponse.json(
+      { notes: [
       {
         id: 1,
         title: "First note",
@@ -54,8 +55,7 @@ export const handlers = [
         content: "This is the fourth note",
         created_at: new Date().toISOString(),
         user_id: 1
-      }
-    ]}, { status: 200 });
+      }] }, { status: 200 });
   }),
 
   // Mock for AI response

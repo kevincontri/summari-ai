@@ -6,6 +6,7 @@ from app.backend.controllers.note_controller import note_router
 from app.backend.controllers.ai_controller import ai_router
 from app.backend.controllers.auth_controller import auth_router
 from app.backend.database.database import init_db
+from fastapi.middleware.cors import CORSMiddleware
 
 
 @asynccontextmanager
@@ -26,6 +27,13 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex=r"http://localhost(:\d+)?",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/health", tags=["health"])
 async def health_check():
