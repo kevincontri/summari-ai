@@ -16,6 +16,11 @@ export default function AIMessageInput({ aiQuery, setAIQuery, handleSubmit }: { 
           className="placeholder:text-gray-800 placeholder:text-md" 
           value={aiQuery}
           onChange={(e) => setAIQuery(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              handleSubmit(e as unknown as React.FormEvent<HTMLFormElement>);
+            }
+          }}
         />
 
         <div 
