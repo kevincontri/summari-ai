@@ -9,7 +9,7 @@ const bgColors = [
   "bg-[#F5E0B3]",
 ];
 
-export default function NoteCard({ note }: { note: NoteBase }) {
+export default function NoteCard({ note, handleOpenNoteModal }: { note: NoteBase, handleOpenNoteModal: (id: number | null, bg_color?: string) => void }) {
 
   const dateObj = new Date(note.created_at);
   const dateStr = dateObj.toLocaleDateString("en-US", {
@@ -23,7 +23,7 @@ export default function NoteCard({ note }: { note: NoteBase }) {
   }, []);
 
   return (
-    <div className={`group flex flex-col justify-between h-48 rounded-xl p-4 shadow-md transition ${randomBg} cursor-pointer hover:transform hover:scale-[1.02] hover:shadow-xl`}>
+    <div className={`group flex flex-col justify-between h-48 rounded-xl p-4 shadow-md transition ${randomBg} cursor-pointer hover:transform hover:scale-[1.02] hover:shadow-xl`} onClick={() => handleOpenNoteModal(note.id, randomBg)}>
       <div>
         <h3 className="font-semibold mb-2">{note.title}</h3>
         <p className="text-sm text-gray-700 mb-3 line-clamp-3">{note.content}</p>
