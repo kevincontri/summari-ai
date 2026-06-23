@@ -148,7 +148,7 @@ h1 {
   }
 
   .logo-text {
-    @apply text-[19px] text-gray-700 hover:text-gray-900 font-bold;
+    @apply text-[19px] text-gray-700 font-bold;
   }
 
   .form-welcome {
@@ -278,4 +278,30 @@ h1 {
   .new-btn {
     @apply flex flex-col items-center justify-center border-[0.5px] border-dashed border-gray-200 rounded-xl hover:border-[#D06D3D] transition h-48 cursor-pointer;
   }
+}
+
+@layer dark-mode {
+  .page-dark {
+    @apply relative p-6 min-h-screen flex items-center justify-center flex-col font-display bg-[#0a0a0a];
+  }
+  .logo-text-dark {
+    @apply text-[19px] text-gray-200 font-bold;
+  }
+
+  .form-welcome-dark {
+    @apply text-3xl font-medium text-gray-200;
+  }
+
+  .form-description-dark {
+    @apply text-lg text-gray-300 mb-6;
+  }
+
+  .input-label-dark {
+    @apply block text-sm font-medium text-gray-300;
+  }
+
+  .dashboard-page-dark {
+    @apply p-6 min-h-screen flex flex-col font-display bg-[#0a0a0a] md:px-32 md:py-12;
+  }
+
 }

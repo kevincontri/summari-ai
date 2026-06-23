@@ -12,6 +12,8 @@ import { getAIResponse } from "../api/ai";
 import NoteModal from "../components/NoteModal";
 import { Toaster } from "../components/ui/sonner";
 import { toast } from "sonner";
+import DarkModeSwitch from "../components/DarkModeSwitch";
+import { useThemeStore } from "../contexts/useThemeStore";
 
 export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -26,6 +28,7 @@ export default function Dashboard() {
   const [newContent, setNewContent] = useState<string>("");
   const [isNoteUpdating, setIsNoteUpdating] = useState<boolean>(false);
   const [bg_color, setBgColor] = useState<string | undefined>(undefined);
+  const theme = useThemeStore((state) => state.theme);
 
   const queryClient = useQueryClient();
 
@@ -168,7 +171,7 @@ export default function Dashboard() {
     { notesLoading && 
     <Loading /> 
     }
-    <div className="dashboard-page">
+    <div className={theme === 'dark' ? "dashboard-page-dark" : "dashboard-page"}>
       <Header logout={logout} navigate={navigate} handleSearch={handleSearch} searchQuery={searchQuery} />
       
       <InputAI handleSubmit={handleSubmitToAI} aiQuery={aiQuery} setAIQuery={setAIQuery} aiResponse={aiResponse} relatedNotes={relatedNotes} showAIOutput={showAIOutput} setShowAIOutput={setShowAIOutput} loadingAI={loadingAI} handleOpenNoteModal={handleOpenNoteModal} />
@@ -193,6 +196,7 @@ export default function Dashboard() {
           />
       }
     </div>
+    <DarkModeSwitch />
     </>
   )
 }

@@ -4,6 +4,8 @@ import { Input } from "../components/ui/input";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "../contexts/useAuthStore";
 import Loading from "../components/Loading";
+import DarkModeSwitch from "../components/DarkModeSwitch";
+import { useThemeStore } from "../contexts/useThemeStore";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -11,6 +13,8 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const theme = useThemeStore((state) => state.theme);
 
   const register = useAuthStore((state) => state.register);
 
@@ -23,43 +27,47 @@ export default function Register() {
 
   return (
     <>
-<div className="page">
+      <div className={theme === 'dark' ? "page-dark" : "page"}>
+        {theme === 'dark' && <div className="absolute top-0 right-0 w-100 h-90 bg-orange-500 rounded-full blur-[180px] opacity-40" />}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full p-4 flex items-center justify-center space-x-3 sm:left-0 sm:translate-x-0 sm:justify-start">
           <img src="./src/assets/summari-logo.svg" alt="Logo" className="logo-img" onClick={() => {window.location.href = "/";}} />
-          <a href="/" className="logo-text">Summari</a>
+          <a href="/" className={theme === 'dark' ? "logo-text-dark" : "logo-text"}>Summari</a>
         </div>
-        <div className="bg-white rounded-4xl shadow-lg p-10 w-full max-w-md space-y-1 flex flex-col mxsm:justify-center sm:h-auto">
-          <p className="form-welcome">Create your account</p>
-          <p className="form-description">Start capturing thoughts in seconds.</p>
+        <div className={`${theme === 'dark' ? "bg-[#1E231F]" : "bg-[#FAF3EE]"} rounded-4xl shadow-lg p-10 w-full max-w-md space-y-1 flex flex-col mxsm:justify-center sm:h-auto`}>
+          <p className={`${theme === 'dark' ? "form-welcome-dark" : "form-welcome"}`}>Create your account</p>
+          <p className={`${theme === 'dark' ? "form-description-dark" : "form-description"}`}>Start capturing thoughts in seconds.</p>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="username" className="input-label">Full name</label>
+              <label htmlFor="username" className={`${theme === 'dark' ? "input-label-dark" : "input-label"}`}>Full name</label>
               <Input 
                 required 
                 type="text" 
                 id="username" 
+                variant={theme === 'dark' ? "darkMode" : "login"}
                 value={username} 
                 onChange={(e) => setUsername(e.target.value)} 
                 placeholder="Your name" 
               />
             </div>
             <div>
-              <label htmlFor="email" className="input-label">Email</label>
+              <label htmlFor="email" className={`${theme === 'dark' ? "input-label-dark" : "input-label"}`}>Email</label>
               <Input 
                 required 
                 type="email" 
                 id="email" 
+                variant={theme === 'dark' ? "darkMode" : "login"}
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@email.com" 
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="password" className="input-label">Password</label>
+              <label htmlFor="password" className={`${theme === 'dark' ? "input-label-dark" : "input-label"}`}>Password</label>
               <Input 
                 required 
                 type="password" 
                 id="password" 
+                variant={theme === 'dark' ? "darkMode" : "login"}
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)} 
                 placeholder="At least 8 characters" 
@@ -75,13 +83,13 @@ export default function Register() {
               </Button>
             </div>
           </form>
-          <p className="text-sm text-gray-600 mt-8 text-center">
+          <p className={`${theme === 'dark' ? "text-sm text-gray-300" : "text-sm text-gray-600"} mt-8 text-center`}>
             Already have an account? <Link to="login" className="footer">
               Log in
             </Link>
           </p>
         </div>
-        <footer className="absolute bottom-4 text-sm text-gray-500">
+        <footer className={`absolute bottom-4 text-sm ${theme === 'dark' ? "text-gray-300" : "text-gray-500"}`}>
           <p>Feito por <a href="https://github.com/KevinContri" target="_blank" rel="noopener noreferrer" className="footer">
             Kevin Contri
           </a></p>
@@ -90,6 +98,7 @@ export default function Register() {
         <Loading /> 
         }
       </div>
+      <DarkModeSwitch />
     </>
   )
 }
