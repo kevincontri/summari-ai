@@ -214,8 +214,18 @@ h1 {
     @apply h-4 mt-1 px-3 cursor-pointer;
   }
 
+  .send-icon-container {
+    @apply bg-[#D06D3D] rounded-md h-8 w-10 md:h-9 md:w-10 flex items-center justify-center cursor-pointer hover:bg-[#FFE5c2] transition;
+  }
+  .send-icon {
+    @apply h-4;
+  }
+}
+
+@layer ai-utils {
   .ai-input-container {
-    @apply flex flex-row bg-white/80 rounded-xl items-center w-full border-[0.5px] border-gray-200 py-2.5 px-3.5 mb-5 shadow-lg;
+    @apply flex flex-row bg-white/80 rounded-xl items-center w-full border-[0.5px] border-gray-200 py-2.5 px-3.5 mb-5 shadow-lg transition-all duration-200 
+            focus-within:border-[#D06D3D] focus-within:ring-2 focus-within:ring-[#D06D3D] focus-within:ring-offset-2 focus-within:ring-offset-[#FFE5D2];
   }
 
   .ai-icon-container {
@@ -225,11 +235,23 @@ h1 {
     @apply h-5 pr-0.5;
   }
 
-  .send-icon-container {
-    @apply bg-[#D06D3D] rounded-md h-8 w-10 md:h-9 md:w-10 flex items-center justify-center cursor-pointer hover:bg-[#FFE5c2] transition;
+  .ai-output-container {
+    @apply bg-white/80 rounded-xl w-full border-[0.5px] border-gray-200 py-3.5 px-4.5 mb-2 shadow-lg;
   }
-  .send-icon {
-    @apply h-4;
+  .ai-output-header {
+    @apply flex flex-row items-center justify-between mb-2;
+  }
+  .ai-output-title {
+    @apply text-sm font-bold;
+  }
+  .ai-output-text {
+    @apply text-gray-700;
+  }
+  .note-opener-container {
+    @apply bg-[#FAF3EE] rounded-md py-1 md:py-0 md:h-8 px-2 md:w-75 flex w-full flex-row items-center space-x-2 mt-3 border-[0.5px] border-gray-300 hover:border-[#D06D3D] transition cursor-pointer;
+  }
+  .note-opener {
+    @apply text-sm text-gray-600 hover:text-gray-800 cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap;
   }
 }
 
