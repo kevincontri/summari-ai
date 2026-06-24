@@ -254,7 +254,7 @@ h1 {
     @apply flex items-center justify-center w-full h-20;
   }
   .note-opener {
-    @apply text-sm text-gray-600 hover:text-gray-800 cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap;
+    @apply text-sm text-gray-600 hover:text-[#D06D3D] cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap;
   }
 }
 
@@ -301,7 +301,51 @@ h1 {
   }
 
   .dashboard-page-dark {
-    @apply p-6 min-h-screen flex flex-col font-display bg-[#0a0a0a] md:px-32 md:py-12;
+    @apply p-6 min-h-screen flex flex-col font-display bg-[#141815] md:px-32 md:py-12;
   }
 
+  .logo-text-dark {
+    @apply text-[19px] text-gray-300 font-bold;
+  }
+
+  .input-container-dark {
+    @apply flex flex-row items-center bg-[#1E231F] rounded-xl w-full md:w-75 h-10 max-w-md border-[0.5px] border-[#262B27];
+  }
+
+  .search-icon-dark {
+    @apply h-4 mt-1 px-3 cursor-pointer filter brightness-0 saturate-[100%] invert-[99%] sepia-[4%] saturate-[380%] hue-rotate-[240deg] brightness-[113%] contrast-[100%];
+  }
+
+  .ai-input-container-dark {
+    @apply flex flex-row bg-[#1E231F] rounded-xl items-center w-full border-[0.5px] border-[#262B27] py-2.5 px-3.5 mb-5 shadow-lg transition-all duration-200 
+            focus-within:border-[#D06D3D] focus-within:ring-2 focus-within:ring-[#D06D3D] focus-within:ring-offset-2 focus-within:ring-offset-[#FFE5D2];
+  }
+
+  .ai-icon-container-dark {
+    @apply bg-[#5e4a3b] rounded-md h-8 w-10 md:h-9 md:w-10 flex items-center justify-center;
+  }
+
+  .ai-icon-dark {
+    @apply h-5 pr-0.5 filter brightness-0 saturate-[100%] invert-[99%] sepia-[4%] saturate-[380%] hue-rotate-[240deg] brightness-[113%] contrast-[100%];
+  }
+
+  .ai-output-title-dark {
+    @apply text-sm font-bold text-[#E8ECE8];
+  }
+
+  .ai-output-container-dark {
+    @apply bg-[#1E231F] rounded-xl w-full border-[0.5px] border-[#262B27] py-3.5 px-4.5 mb-2 shadow-lg;
+  }
+
+  .ai-output-text-dark {
+    @apply text-[#E8ECE8];
+  }
+
+  .note-opener-container-dark {
+    @apply bg-[#141815] rounded-md py-1 md:py-0 md:h-8 px-2 md:w-full flex flex-row w-80 items-center space-x-2 mt-3 border-[0.5px] border-[#262B27] hover:border-[#D06D3D] transition cursor-pointer;
+  }
+
+  .note-opener-dark {
+    @apply text-sm text-gray-300 hover:text-[#D06D3D] cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap;
+  }
 }

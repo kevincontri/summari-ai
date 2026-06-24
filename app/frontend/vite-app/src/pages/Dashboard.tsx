@@ -172,6 +172,7 @@ export default function Dashboard() {
     <Loading /> 
     }
     <div className={theme === 'dark' ? "dashboard-page-dark" : "dashboard-page"}>
+      {theme === 'dark' && <div className="z-1 pointer-events-none absolute top-0 right-0 w-100 h-90 md:bg-orange-500 rounded-full blur-[250px] opacity-40" />}
       <Header logout={logout} navigate={navigate} handleSearch={handleSearch} searchQuery={searchQuery} />
       
       <InputAI handleSubmit={handleSubmitToAI} aiQuery={aiQuery} setAIQuery={setAIQuery} aiResponse={aiResponse} relatedNotes={relatedNotes} showAIOutput={showAIOutput} setShowAIOutput={setShowAIOutput} loadingAI={loadingAI} handleOpenNoteModal={handleOpenNoteModal} />

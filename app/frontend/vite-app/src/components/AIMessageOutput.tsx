@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 import type { NoteBase } from "@/types/notes_types";
 import NoteReference from "./NoteReference";
 
-export default function AIMessageOutput({ aiResponse, showAIOutput, setShowAIOutput, loadingAI, relatedNotes, handleOpenNoteModal }: { aiResponse: string | null; showAIOutput: boolean; setShowAIOutput: (show: boolean) => void; loadingAI: boolean; relatedNotes: NoteBase[] | null; handleOpenNoteModal: (noteId: number) => void; }) {
+export default function AIMessageOutput({ aiResponse, showAIOutput, setShowAIOutput, loadingAI, relatedNotes, handleOpenNoteModal, theme }: { aiResponse: string | null; showAIOutput: boolean; setShowAIOutput: (show: boolean) => void; loadingAI: boolean; relatedNotes: NoteBase[] | null; handleOpenNoteModal: (noteId: number) => void; theme: string }) {
   return (
     <Transition
       show={Boolean(showAIOutput)}
@@ -15,7 +15,7 @@ export default function AIMessageOutput({ aiResponse, showAIOutput, setShowAIOut
       leaveFrom="opacity-100 translate-y-0 scale-100"
       leaveTo="opacity-0 translate-y-[-4] scale-95"
       >
-      <div className="ai-output-container">
+      <div className={`ai-output-container ${theme === 'dark' ? "ai-output-container-dark" : "ai-output-container"}`}>
         {loadingAI && 
           <div className="loading-container">
            <ScaleLoader color="#D06D3D" height={35} width={4} radius={2} margin={2} speedMultiplier={0.6}/>
@@ -25,19 +25,19 @@ export default function AIMessageOutput({ aiResponse, showAIOutput, setShowAIOut
         <div>
           <div className="ai-output-header">
             <div className="flex flex-row items-center space-x-2">
-              <img src="./src/assets/stars.png" alt="Stars Icon" title="Summari AI" className="ai-icon" />
-              <h2 className="ai-output-title">Summari</h2>
+              <img src="./src/assets/stars.png" alt="Stars Icon" title="Summari AI" className={theme === 'dark' ? "ai-icon-dark" : "ai-icon"} />
+              <h2 className={theme === 'dark' ? "ai-output-title-dark" : "ai-output-title"}>Summari</h2>
             </div>
-            <X onClick={() => setShowAIOutput(false)} className="cursor-pointer"/>
+            <X onClick={() => setShowAIOutput(false)} className="cursor-pointer" color={`${theme === 'dark' ? "#ffffff" : "#000000"}`}/>
           </div>
         </div>
         )}
         <div className="ai-output-content">
-          <p className="ai-output-text">{aiResponse}</p>
+          <p className={theme === 'dark' ? "ai-output-text-dark" : "ai-output-text"}>{aiResponse}</p>
         </div>
         <div className="flex flex-col md:flex-row items-center md:space-x-2">
           {relatedNotes?.map((note) => (
-            <NoteReference key={note.id} note={note} handleOpenNoteModal={handleOpenNoteModal} />
+            <NoteReference key={note.id} note={note} handleOpenNoteModal={handleOpenNoteModal} theme={theme} />
           ))}
         </div>
       </div>
