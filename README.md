@@ -243,6 +243,5 @@ npm run build
 ## Future Improvements
 
 - Add refresh tokens
-- Further AI/agent refactoring
-- Expand AI features
+- Expand AI feature (AI agentic tools)
 - Deploy to cloud
