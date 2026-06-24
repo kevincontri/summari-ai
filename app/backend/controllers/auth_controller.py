@@ -13,7 +13,7 @@ async def create_user(
     try:
         user = await user_service.create_user(body.username, body.password, body.email)
     except DuplicateError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(status_code=409, detail=str(e))
     return SingleUserResponse(user=user)
 
 

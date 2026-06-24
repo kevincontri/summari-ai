@@ -4,18 +4,22 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './pages/Dashboard';
+import { TooltipProvider } from "@/components/ui/tooltip"
 
 function App() {
 
   return (
     <>
-      <BrowserRouter>
+
+        <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={
             <PrivateRoute>
-              <Dashboard />
+              <TooltipProvider>
+                <Dashboard />
+              </TooltipProvider>
             </PrivateRoute>
           } />
           <Route path="*" element={<Navigate to="/login" />} />

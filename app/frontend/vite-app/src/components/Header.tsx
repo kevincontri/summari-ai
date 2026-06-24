@@ -1,5 +1,10 @@
 import { Input } from "../components/ui/input";
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from "../components/ui/alert-dialog";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip"
 
 export default function Header({ logout, navigate, handleSearch, searchQuery, theme }: { logout: (navigate: (path: string) => void) => void; navigate: any; handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void; searchQuery: string; theme: string }) {
 
@@ -12,9 +17,14 @@ export default function Header({ logout, navigate, handleSearch, searchQuery, th
         </div>
         <AlertDialog>
           <AlertDialogTrigger>
-            <div className="logout-container-mobile" title="Logout">
+            <Tooltip>
+              <TooltipTrigger>
+            <div className="logout-container-mobile">
               <img src="./src/assets/logout.png" alt="Logout Icon" className="logout-icon" />
             </div>
+              </TooltipTrigger>
+              <TooltipContent side="top">Logout</TooltipContent>
+            </Tooltip>
           </AlertDialogTrigger>
           <AlertDialogContent className={theme === 'dark' ? "alert-dialog-content-dark" : "alert-dialog-content"}>
             <AlertDialogHeader>
@@ -42,9 +52,14 @@ export default function Header({ logout, navigate, handleSearch, searchQuery, th
         </div>
         <AlertDialog>
           <AlertDialogTrigger>
-            <div className="logout-container-desktop" title="Logout">
+            <Tooltip>
+              <TooltipTrigger>
+            <div className="logout-container-desktop">
               <img src="./src/assets/logout.png" alt="Logout Icon" className="logout-icon" />
             </div>
+              </TooltipTrigger>
+              <TooltipContent side="top">Logout</TooltipContent>
+            </Tooltip>
           </AlertDialogTrigger>
           <AlertDialogContent className={theme === 'dark' ? "alert-dialog-content-dark" : "alert-dialog-content"}>
             <AlertDialogHeader>

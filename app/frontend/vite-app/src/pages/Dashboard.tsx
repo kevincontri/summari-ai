@@ -98,6 +98,12 @@ export default function Dashboard() {
   }, [notes, searchQuery]);
 
   const handleSubmitToAI = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    if (notes!.length === 0) {
+      toast.warning("You have no notes to analyze. Please create some notes first.");
+      setLoadingAI(false);
+      return;
+    }
+
     // Validation of input
     if (!aiQuery.trim()) {
       toast.warning("Please enter a query for the AI.");

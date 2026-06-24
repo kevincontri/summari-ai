@@ -1,12 +1,17 @@
 import { Input } from "./ui/input";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "./ui/tooltip"
 
 export default function AIMessageInput({ aiQuery, setAIQuery, handleSubmit, theme }: { aiQuery: string; setAIQuery: (query: string) => void; handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void; theme: string }) {
 
   return (
   <div className={theme === 'dark' ? "ai-input-container-dark" : "ai-input-container"}>
       <div className="flex flex-row items-center space-x-2 w-full">
-        <div className={theme === 'dark' ? "ai-icon-container-dark hover:animate-spin" : "ai-icon-container hover:animate-spin"}>
-          <img src="./src/assets/stars.png" alt="Stars Icon" title="Summari AI" className={theme === 'dark' ? "ai-icon-dark" : "ai-icon"} />
+        <div className={theme === 'dark' ? "ai-icon-container-dark" : "ai-icon-container"}>
+          <img src="./src/assets/stars.png" alt="Stars Icon" className={theme === 'dark' ? "ai-icon-dark hover:animate-spin" : "ai-icon hover:animate-spin"} />
         </div>
 
         <Input  
@@ -22,11 +27,18 @@ export default function AIMessageInput({ aiQuery, setAIQuery, handleSubmit, them
           }}
         />
 
-        <div 
-        className="send-icon-container"
-        onClick={(e: any) => handleSubmit(e)}>
-          <img src="./src/assets/send.png" alt="Send Icon" className="send-icon cursor-pointer" />
-        </div>
+        <Tooltip>
+          <TooltipTrigger>
+          <div 
+          className="send-icon-container"
+          onClick={(e: any) => handleSubmit(e)}>
+            <img src="./src/assets/send.png" alt="Send Icon" className="send-icon cursor-pointer" />
+          </div>
+          </TooltipTrigger>
+          <TooltipContent side="top">
+            <p>Send to AI</p>
+          </TooltipContent>
+        </Tooltip>
       </div>
     </div>
     )

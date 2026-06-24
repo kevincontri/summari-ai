@@ -366,7 +366,7 @@ h1 {
   }
 
   .alert-dialog-title-dark {
-    @apply  text-[#c7c7c7] md:text-[#c7c7c7];
+    @apply text-[#c7c7c7] md:text-[#c7c7c7];
   }
 
   .alert-dialog-description-dark {
@@ -378,3 +378,22 @@ h1 {
   }
 }
 
+@layer animations {
+  .animated-button {
+    @apply animate-bouncing border-dashed border-[#D06D3D]/30 border-2 rounded-xl bg-[#D06D3D]/6;
+  }
+}
+
+@theme {
+  --animate-bouncing: bouncing 1s infinite;
+
+  @keyframes bouncing {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+}
