@@ -348,4 +348,33 @@ h1 {
   .note-opener-dark {
     @apply text-sm text-gray-300 hover:text-[#D06D3D] cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap;
   }
+
+  .notes-title-dark {
+    @apply text-xl font-bold mb-4 text-[#E8ECE8];
+  }
+
+  .notes-count-dark {
+    @apply text-xs text-gray-400;
+  }
+
+  .new-btn-dark {
+    @apply flex flex-col items-center justify-center border-[0.5px] border-gray-800 rounded-xl hover:border-[#5e4a3b] transition h-48 cursor-pointer;
+  }
+
+  .alert-dialog-content-dark {
+    @apply bg-[#292a29];
+  }
+
+  .alert-dialog-title-dark {
+    @apply  text-[#c7c7c7] md:text-[#c7c7c7];
+  }
+
+  .alert-dialog-description-dark {
+    @apply text-[#9c9c9c];
+  }
+
+  .alert-dialog-cancel-dark {
+    @apply text-[#4c4c4c];
+  }
 }
+

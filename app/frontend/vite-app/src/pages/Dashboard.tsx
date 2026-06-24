@@ -140,6 +140,15 @@ export default function Dashboard() {
       toast.error("Please enter content for the note.");
       return;
     }
+    if (note.title.length > 100 || note.title.length < 3) {
+      toast.error("Title must be between 3 and 100 characters.");
+      return;
+    }
+    if (note.content.length > 1000 || note.content.length < 3) {
+      toast.error("Content must be between 3 and 1000 characters.");
+      return;
+    }
+
     toast.loading("Saving note...", { id: "save-note" });
     await saveNoteMutation(note);
   }
@@ -166,14 +175,14 @@ export default function Dashboard() {
 
   return (
     <>
-    <Toaster position="top-center" richColors />
+    <Toaster position="top-center" richColors theme={theme}/>
 
     { notesLoading && 
     <Loading /> 
     }
     <div className={theme === 'dark' ? "dashboard-page-dark" : "dashboard-page"}>
       {theme === 'dark' && <div className="z-1 pointer-events-none absolute top-0 right-0 w-100 h-90 md:bg-orange-500 rounded-full blur-[250px] opacity-40" />}
-      <Header logout={logout} navigate={navigate} handleSearch={handleSearch} searchQuery={searchQuery} />
+      <Header logout={logout} navigate={navigate} handleSearch={handleSearch} searchQuery={searchQuery} theme={theme} />
       
       <InputAI handleSubmit={handleSubmitToAI} aiQuery={aiQuery} setAIQuery={setAIQuery} aiResponse={aiResponse} relatedNotes={relatedNotes} showAIOutput={showAIOutput} setShowAIOutput={setShowAIOutput} loadingAI={loadingAI} handleOpenNoteModal={handleOpenNoteModal} />
 
@@ -181,7 +190,8 @@ export default function Dashboard() {
         notes={filteredNotes}
         count={filteredNotes.length}
         handleOpenNoteModal={handleOpenNoteModal} 
-        onDelete={handleDeleteNote} />
+        onDelete={handleDeleteNote} 
+        theme={theme}/>
 
       {showNoteModal && 
         <NoteModal 
@@ -194,6 +204,7 @@ export default function Dashboard() {
           newContent={newContent} 
           setNewContent={setNewContent}
           bg_color={bg_color}
+          theme={theme}
           />
       }
     </div>

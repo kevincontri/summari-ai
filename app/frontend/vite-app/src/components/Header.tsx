@@ -1,9 +1,7 @@
 import { Input } from "../components/ui/input";
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogAction, AlertDialogCancel } from "../components/ui/alert-dialog";
-import { useThemeStore } from "../contexts/useThemeStore";
 
-export default function Header({ logout, navigate, handleSearch, searchQuery }: { logout: (navigate: (path: string) => void) => void; navigate: any; handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void; searchQuery: string }) {
-  const { theme } = useThemeStore();
+export default function Header({ logout, navigate, handleSearch, searchQuery, theme }: { logout: (navigate: (path: string) => void) => void; navigate: any; handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void; searchQuery: string; theme: string }) {
 
   return (
     <div className="header">
@@ -18,16 +16,16 @@ export default function Header({ logout, navigate, handleSearch, searchQuery }: 
               <img src="./src/assets/logout.png" alt="Logout Icon" className="logout-icon" />
             </div>
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className={theme === 'dark' ? "alert-dialog-content-dark" : "alert-dialog-content"}>
             <AlertDialogHeader>
-              <AlertDialogTitle>Confirm Logout</AlertDialogTitle>
-              <AlertDialogDescription>
+              <AlertDialogTitle className={theme === 'dark' ? "alert-dialog-title-dark" : "alert-dialog-title"}>Confirm Logout</AlertDialogTitle>
+              <AlertDialogDescription className={theme === 'dark' ? "alert-dialog-description-dark" : "alert-dialog-description"}>
                 Are you sure you want to logout?
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction className="bg-[#D06D3D]" onClick={() => logout(navigate)}>Logout</AlertDialogAction>
+              <AlertDialogCancel className={theme === 'dark' ? "alert-dialog-cancel-dark" : "alert-dialog-cancel"}>Cancel</AlertDialogCancel>
+              <AlertDialogAction className={theme === 'dark' ? "bg-[#545454] hover:bg-[#514033]" : "bg-[#D06D3D] hover:bg-[#B85A3A]"} onClick={() => logout(navigate)}>Logout</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
@@ -48,16 +46,16 @@ export default function Header({ logout, navigate, handleSearch, searchQuery }: 
               <img src="./src/assets/logout.png" alt="Logout Icon" className="logout-icon" />
             </div>
           </AlertDialogTrigger>
-          <AlertDialogContent>
+          <AlertDialogContent className={theme === 'dark' ? "alert-dialog-content-dark" : "alert-dialog-content"}>
             <AlertDialogHeader>
-              <AlertDialogTitle>Confirm Logout</AlertDialogTitle>
-              <AlertDialogDescription>
+              <AlertDialogTitle className={theme === 'dark' ? "alert-dialog-title-dark" : "alert-dialog-title"}>Confirm Logout</AlertDialogTitle>
+              <AlertDialogDescription className={theme === 'dark' ? "alert-dialog-description-dark" : "alert-dialog-description"}>
                 Are you sure you want to logout?
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction className="bg-[#D06D3D]" onClick={() => logout(navigate)}>Logout</AlertDialogAction>
+              <AlertDialogCancel className={theme === 'dark' ? "alert-dialog-cancel-dark" : "alert-dialog-cancel"}>Cancel</AlertDialogCancel>
+              <AlertDialogAction className={theme === 'dark' ? "bg-[#545454] hover:bg-[#514033]" : "bg-[#D06D3D] hover:bg-[#B85A3A]"} onClick={() => logout(navigate)}>Logout</AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
