@@ -25,5 +25,4 @@ class SingleNoteResponse(BaseModel):
 
 
 class MultipleNoteResponse(BaseModel):
-    count: int
     notes: List[Note]

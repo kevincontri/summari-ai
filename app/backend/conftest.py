@@ -11,8 +11,8 @@ import pytest
 import pytest_asyncio
 from unittest.mock import AsyncMock, patch
 
-
-@pytest.fixture(scope="session", autouse=True)
+# Mock the AI responses (Deactivate if you want to test the real AI model response)
+@pytest.fixture(scope="session")
 def _mock_groq():
     embed_patch = patch(
         "app.backend.ai_settings.embedding_client.EmbeddingClient.message_embedding",

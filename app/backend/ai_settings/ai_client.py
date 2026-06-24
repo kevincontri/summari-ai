@@ -11,13 +11,14 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 model = ChatGroq(model="llama-3.1-8b-instant", temperature=0.4, max_retries= 2, api_key=GROQ_API_KEY)
 
 class GroqClient:
-    def __init__(self, notes: list, prompt: str):
+    def __init__(self, notes: list, prompt: str, username: str = None):
         self.prompt = prompt
         self.notes = notes
+        self.username = username
         
     async def chat(self) -> str:
         template = PROMPT_ENHANCER
         chat_prompt = ChatPromptTemplate.from_template(template)
-        message = chat_prompt.format_messages(notes=self.notes, user_prompt=self.prompt)
+        message = chat_prompt.format_messages(notes=self.notes, user_prompt=self.prompt, user_name=self.username)
         result = await model.ainvoke(message)
         return result.content
