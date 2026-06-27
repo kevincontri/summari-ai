@@ -7,6 +7,13 @@ from app.backend.controllers.ai_controller import ai_router
 from app.backend.controllers.auth_controller import auth_router
 from app.backend.database.database import init_db
 from fastapi.middleware.cors import CORSMiddleware
+import os
+import dotenv
+
+dotenv.load_dotenv()
+
+FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+ALLOWED_ORIGINS = [origin.strip() for origin in FRONTEND_URL.split(",") if origin.strip()]
 
 
 @asynccontextmanager
@@ -29,7 +36,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origin_regex=r"http://localhost(:\d+)?",
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

@@ -6,7 +6,6 @@ import App from './App.tsx'
 import { queryClient } from './lib/queryClient.ts'
 
 async function enableMocking() {
-  return; // Disable MSW for now.
   // @ts-ignore
   if (import.meta.env.MODE !== "development") return;
   const { worker } = await import("./mocks/browser.js");
