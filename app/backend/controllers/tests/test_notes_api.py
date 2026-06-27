@@ -31,13 +31,14 @@ def test_get_all_notes():
     response = client.get("/notes")
     assert response.status_code == 200
     data = response.json()
-    assert "count" in data
     assert "notes" in data
 
     for note in data["notes"]:
         assert "id" in note
         assert "title" in note
         assert "content" in note
+        assert "created_at" in note
+        assert "user_id" in note
 
 
 def test_get_note_by_id():

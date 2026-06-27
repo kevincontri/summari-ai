@@ -1,6 +1,7 @@
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 from typing import Optional
+from urllib.parse import urlsplit, urlunsplit
 from .base import metadata
 import asyncio
 import os
@@ -16,10 +17,13 @@ elif CONNECTION.startswith("postgres://"):
 engine_kwargs = {}
 
 if "asyncpg" in CONNECTION:
+    parts = urlsplit(CONNECTION)
+    CONNECTION = urlunsplit((parts.scheme, parts.netloc, parts.path, "", ""))
     engine_kwargs = {
         "pool_size": 2,
         "max_overflow": 0,
         "pool_timeout": 30,
+        "connect_args": {"ssl": True},
     }
 
 engine = create_async_engine(CONNECTION, **engine_kwargs)
