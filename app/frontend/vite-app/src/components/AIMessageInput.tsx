@@ -4,6 +4,8 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "./ui/tooltip"
+import starsIcon from "../assets/stars.png";
+import sendIcon from "../assets/send.png";
 
 export default function AIMessageInput({ aiQuery, setAIQuery, handleSubmit, theme }: { aiQuery: string; setAIQuery: (query: string) => void; handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void; theme: string }) {
 
@@ -11,7 +13,7 @@ export default function AIMessageInput({ aiQuery, setAIQuery, handleSubmit, them
   <div className={theme === 'dark' ? "ai-input-container-dark" : "ai-input-container"}>
       <div className="flex flex-row items-center space-x-2 w-full">
         <div className={theme === 'dark' ? "ai-icon-container-dark" : "ai-icon-container"}>
-          <img src="./src/assets/stars.png" alt="Stars Icon" className={theme === 'dark' ? "ai-icon-dark hover:animate-spin" : "ai-icon hover:animate-spin"} />
+          <img src={starsIcon} alt="Stars Icon" className={theme === 'dark' ? "ai-icon-dark hover:animate-spin" : "ai-icon hover:animate-spin"} />
         </div>
 
         <Input  
@@ -32,7 +34,7 @@ export default function AIMessageInput({ aiQuery, setAIQuery, handleSubmit, them
           <div 
           className="send-icon-container"
           onClick={(e: any) => handleSubmit(e)}>
-            <img src="./src/assets/send.png" alt="Send Icon" className="send-icon cursor-pointer" />
+            <img src={sendIcon} alt="Send Icon" className="send-icon cursor-pointer" />
           </div>
           </TooltipTrigger>
           <TooltipContent side="top">

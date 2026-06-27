@@ -1,6 +1,7 @@
 import type { NoteBase } from "@/types/notes_types";
 import { HoverCard, HoverCardTrigger, HoverCardContent } from "./ui/hover-card";
 import { useState } from "react";
+import dotIcon from "../assets/dot.png";
 
 export default function NoteReference({ note, handleOpenNoteModal, theme }: { note: NoteBase, handleOpenNoteModal: (noteId: number) => void, theme: string }) {
   const [open, setOpen] = useState(false);
@@ -17,7 +18,7 @@ export default function NoteReference({ note, handleOpenNoteModal, theme }: { no
       <HoverCardTrigger 
       onClick={() => setOpen(!open)}>
         <div className={theme === 'dark' ? "note-opener-container-dark" : "note-opener-container"} key={note.id}>
-        <img src="./src/assets/dot.png" alt="Dot Icon" className="cursor-pointer h-2.5" />
+        <img src={dotIcon} alt="Dot Icon" className="cursor-pointer h-2.5" />
         <p className={theme === 'dark' ? "note-opener-dark" : "note-opener"}>{note.title}</p>
         </div>
       </HoverCardTrigger>

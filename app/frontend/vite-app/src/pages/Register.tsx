@@ -8,6 +8,7 @@ import DarkModeSwitch from "../components/DarkModeSwitch";
 import { useThemeStore } from "../contexts/useThemeStore";
 import { Toaster } from "../components/ui/sonner";
 import { toast } from "sonner";
+import summariLogo from "../assets/summari-logo.svg";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -65,7 +66,7 @@ export default function Register() {
       <div className={theme === 'dark' ? "page-dark" : "page"}>
         {theme === 'dark' && <div className="absolute top-0 right-0 w-100 h-90 md:bg-orange-500 rounded-full blur-[180px] opacity-40 pointer-events-none" />}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full p-4 flex items-center justify-center space-x-3 sm:left-0 sm:translate-x-0 sm:justify-start">
-          <img src="./src/assets/summari-logo.svg" alt="Logo" className="logo-img" onClick={() => {window.location.href = "/";}} />
+          <img src={summariLogo} alt="Logo" className="logo-img" onClick={() => {window.location.href = "/";}} />
           <a href="/" className={theme === 'dark' ? "logo-text-dark" : "logo-text"}>Summari</a>
         </div>
         <div className={`${theme === 'dark' ? "bg-[#1E231F]" : "bg-[#FAF3EE]"} rounded-4xl shadow-lg p-10 w-full max-w-md space-y-1 flex flex-col mxsm:justify-center sm:h-auto`}>

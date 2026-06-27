@@ -3,6 +3,7 @@ import { ScaleLoader } from "react-spinners";
 import { X } from 'lucide-react';
 import type { NoteBase } from "@/types/notes_types";
 import NoteReference from "./NoteReference";
+import starsIcon from "../assets/stars.png";
 
 export default function AIMessageOutput({ aiResponse, showAIOutput, setShowAIOutput, loadingAI, relatedNotes, handleOpenNoteModal, theme }: { aiResponse: string | null; showAIOutput: boolean; setShowAIOutput: (show: boolean) => void; loadingAI: boolean; relatedNotes: NoteBase[] | null; handleOpenNoteModal: (noteId: number) => void; theme: string }) {
   return (
@@ -25,7 +26,7 @@ export default function AIMessageOutput({ aiResponse, showAIOutput, setShowAIOut
         <div>
           <div className="ai-output-header">
             <div className="flex flex-row items-center space-x-2">
-              <img src="./src/assets/stars.png" alt="Stars Icon" title="Summari AI" className={theme === 'dark' ? "ai-icon-dark" : "ai-icon"} />
+              <img src={starsIcon} alt="Stars Icon" title="Summari AI" className={theme === 'dark' ? "ai-icon-dark" : "ai-icon"} />
               <h2 className={theme === 'dark' ? "ai-output-title-dark" : "ai-output-title"}>Summari</h2>
             </div>
             <X onClick={() => setShowAIOutput(false)} className="cursor-pointer" color={`${theme === 'dark' ? "#ffffff" : "#000000"}`}/>

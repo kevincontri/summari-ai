@@ -5,6 +5,9 @@ import {
   TooltipTrigger,
   TooltipContent,
 } from "@/components/ui/tooltip"
+import summariLogo from "../assets/summari-logo.svg";
+import logoutIcon from "../assets/logout.png";
+import searchIcon from "../assets/search.png";
 
 export default function Header({ logout, navigate, handleSearch, searchQuery, theme }: { logout: (navigate: (path: string) => void) => void; navigate: any; handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void; searchQuery: string; theme: string }) {
 
@@ -12,7 +15,7 @@ export default function Header({ logout, navigate, handleSearch, searchQuery, th
     <div className="header">
       <div className="header-nav">
         <div className="header-logo">
-          <img src="./src/assets/summari-logo.svg" alt="Logo" className="logo-img" />
+          <img src={summariLogo} alt="Logo" className="logo-img" />
           <span className={`${theme === 'dark' ? "logo-text-dark" : "logo-text"}`}>Summari</span>
         </div>
         <AlertDialog>
@@ -20,7 +23,7 @@ export default function Header({ logout, navigate, handleSearch, searchQuery, th
             <Tooltip>
               <TooltipTrigger>
             <div className="logout-container-mobile">
-              <img src="./src/assets/logout.png" alt="Logout Icon" className="logout-icon" />
+              <img src={logoutIcon} alt="Logout Icon" className="logout-icon" />
             </div>
               </TooltipTrigger>
               <TooltipContent side="top">Logout</TooltipContent>
@@ -42,7 +45,7 @@ export default function Header({ logout, navigate, handleSearch, searchQuery, th
       </div>
       <div className="header-right">  
         <div className={`${theme === 'dark' ? "input-container-dark" : "input-container"}`}>
-          <img src="./src/assets/search.png" alt="Search Icon" className={`${theme === 'dark' ? "search-icon-dark" : "search-icon"}`} />
+          <img src={searchIcon} alt="Search Icon" className={`${theme === 'dark' ? "search-icon-dark" : "search-icon"}`} />
           <Input 
             placeholder="Search your notes..." 
             variant="dashboard" 
@@ -55,7 +58,7 @@ export default function Header({ logout, navigate, handleSearch, searchQuery, th
             <Tooltip>
               <TooltipTrigger>
             <div className="logout-container-desktop">
-              <img src="./src/assets/logout.png" alt="Logout Icon" className="logout-icon" />
+              <img src={logoutIcon} alt="Logout Icon" className="logout-icon" />
             </div>
               </TooltipTrigger>
               <TooltipContent side="top">Logout</TooltipContent>
