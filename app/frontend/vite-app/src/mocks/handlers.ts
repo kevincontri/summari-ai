@@ -6,14 +6,16 @@ import type { NoteBase, NoteCreateRequest, NoteUpdateRequest } from "../types/no
 export const handlers = [
   // Mock for login endpoint
   http.post<any, LoginRequest, TokenResponse>("*/auth/login", async () => {
+    await delay(5000); // Simulate a delay 
     return HttpResponse.json({
-      access_token: "FAKE_TOKEN",
+      access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMiwiZXhwIjoxNzgyNjc3MjYwMDAwMDAwMDAwMDB9.uWHNpo_1S6LKBU4fEK8YXsfu0xTo0H3Q28oYn8fShWI",
       token_type: "bearer"
     }, { status: 200 });
   }),
 
   // Mock for register endpoint
   http.post<any, RegisterRequest, UserBase>("*/auth/register", async ({ request }) => {
+    await delay(5000); // Simulate a delay 
     const { email, username, password } = await request.json();
     return HttpResponse.json({
       id: 1,

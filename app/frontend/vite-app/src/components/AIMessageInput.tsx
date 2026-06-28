@@ -27,6 +27,7 @@ export default function AIMessageInput({ aiQuery, setAIQuery, handleSubmit, them
               handleSubmit(e as unknown as React.FormEvent<HTMLFormElement>);
             }
           }}
+          autoComplete="off"
         />
 
         <Tooltip>

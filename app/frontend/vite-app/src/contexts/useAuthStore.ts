@@ -26,6 +26,13 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
   register: async (username: string, email: string, password: string, navigate: (path: string) => void) => {
     await api.post('/auth/register', { username, email, password });
-    navigate('/login');
+    
+    // After successful registration, automatically log in the user
+    await api.post('/auth/login', { email, password });
+    const response = await api.post('/auth/login', { email, password });
+    const newToken = response.data.access_token;
+    localStorage.setItem('token', newToken);
+    set({ token: newToken });
+    navigate('/dashboard');
   }
 }));

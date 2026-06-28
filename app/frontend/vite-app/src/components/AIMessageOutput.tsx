@@ -36,7 +36,7 @@ export default function AIMessageOutput({ aiResponse, showAIOutput, setShowAIOut
         <div className="ai-output-content">
           <p className={theme === 'dark' ? "ai-output-text-dark" : "ai-output-text"}>{aiResponse}</p>
         </div>
-        <div className="flex flex-col md:flex-row items-center md:space-x-2">
+        <div className="flex flex-row items-center space-x-2 flex-wrap">
           {relatedNotes?.map((note) => (
             <NoteReference key={note.id} note={note} handleOpenNoteModal={handleOpenNoteModal} theme={theme} />
           ))}

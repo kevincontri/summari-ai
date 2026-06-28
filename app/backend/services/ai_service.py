@@ -23,6 +23,9 @@ class AIService(AIServiceInterface):
   
         ranked_notes = await self.__rank_notes(prompt, user_notes)
         
+        if not ranked_notes:
+            ranked_notes = user_notes # if no relevant notes, return all
+        
         clean_notes = self.__prepare_notes_for_llm(ranked_notes)
         
         username = await self.__get_user_name(user_id)

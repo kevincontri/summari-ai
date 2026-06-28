@@ -8,8 +8,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 35
+ALGORITHM = os.environ.get("JWT_ALGORITHM", "HS256")
+ACCESS_TOKEN_EXP = os.environ.get("ACCESS_TOKEN_EXP", 45)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
@@ -18,7 +18,7 @@ def create_access_token(user_id: int) -> str:
     payload = {
         "sub": str(user_id),
         "exp": datetime.now(timezone.utc)
-        + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
+        + timedelta(minutes=ACCESS_TOKEN_EXP),
     }
     return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
 
