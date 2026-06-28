@@ -9,11 +9,13 @@ import { useThemeStore } from "../contexts/useThemeStore";
 import { Toaster } from "../components/ui/sonner";
 import { toast } from "sonner";
 import summariLogo from "../assets/summari-logo.svg";
+import DevAlert from "../components/DevAlert";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [devAlert, setDevAlert] = useState<boolean>(false);
   const login = useAuthStore((state) => state.login);
   const theme = useThemeStore((state) => state.theme);
 
@@ -22,6 +24,7 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setLoading(true);
+    setDevAlert(true);
 
     // Validation checks
     if (email.trim() === "" || password.trim() === "") {
@@ -54,6 +57,7 @@ export default function Login() {
       console.error('Login failed', error);
     }
     setLoading(false);
+    setDevAlert(false);
   };
 
   return (
@@ -119,6 +123,7 @@ export default function Login() {
         { loading && 
         <Loading /> 
         }
+        <DevAlert setDevAlert={setDevAlert} showAlert={devAlert} />
         <DarkModeSwitch />
       </div>
     </>

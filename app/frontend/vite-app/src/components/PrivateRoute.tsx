@@ -1,10 +1,13 @@
 import { Navigate } from "react-router-dom";
 import type { JSX } from "react/jsx-runtime";
-export default function PrivateRoute({ children }: { children: JSX.Element }) {
-  const isAuthenticated = !!localStorage.getItem('token'); // Check if token exists in local storage
+import { isTokenExpired } from "../lib/auth";
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />; // Redirect to login if not authenticated
+export default function PrivateRoute({ children }: { children: JSX.Element }) {
+  const token = localStorage.getItem("token");
+
+  if (isTokenExpired(token)) {
+    localStorage.removeItem("token");
+    return <Navigate to="/login" replace />;
   }
 
   return children;

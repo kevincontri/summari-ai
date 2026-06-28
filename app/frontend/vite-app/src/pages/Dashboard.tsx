@@ -127,10 +127,18 @@ export default function Dashboard() {
     e.preventDefault();
 
     // Fetch AI response
-    const aiResponse = await getAIResponse(aiQuery);
-    setAIResponse(aiResponse.ai_response);
-    setRelatedNotes(aiResponse.related_notes);
-    setLoadingAI(false);
+    try {
+      const aiResponse = await getAIResponse(aiQuery);
+      setAIResponse(aiResponse.ai_response);
+      setRelatedNotes(aiResponse.related_notes);
+      setLoadingAI(false);
+    } catch (error: any) {
+      toast.error("Oops! There was an error trying to communicate with the AI. Please try again later.");
+      console.error("Error fetching AI response:", error);
+      setLoadingAI(false);
+      setShowAIOutput(false);
+      return;
+    }
   }
 
   const handleSaveNote = async (note: Omit<NoteBase, "id" | "created_at" | "user_id"> | Partial<Omit<NoteBase, "id" | "created_at" | "user_id">>): Promise<void> => {
@@ -187,7 +195,10 @@ export default function Dashboard() {
     <Loading /> 
     }
     <div className={theme === 'dark' ? "dashboard-page-dark" : "dashboard-page"}>
+
+      {/* Background gradient, only visible in dark mode */}
       {theme === 'dark' && <div className="z-1 pointer-events-none absolute top-0 right-0 w-100 h-90 md:bg-orange-500 rounded-full blur-[250px] opacity-40" />}
+
       <Header logout={logout} navigate={navigate} handleSearch={handleSearch} searchQuery={searchQuery} theme={theme} />
       
       <InputAI handleSubmit={handleSubmitToAI} aiQuery={aiQuery} setAIQuery={setAIQuery} aiResponse={aiResponse} relatedNotes={relatedNotes} showAIOutput={showAIOutput} setShowAIOutput={setShowAIOutput} loadingAI={loadingAI} handleOpenNoteModal={handleOpenNoteModal} />
@@ -197,7 +208,9 @@ export default function Dashboard() {
         count={filteredNotes.length}
         handleOpenNoteModal={handleOpenNoteModal} 
         onDelete={handleDeleteNote} 
-        theme={theme}/>
+        theme={theme}
+        searchQuery={searchQuery} 
+      />
 
       {showNoteModal && 
         <NoteModal 

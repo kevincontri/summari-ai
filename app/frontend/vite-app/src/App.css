@@ -131,10 +131,10 @@ h1 {
     @apply border-border outline-ring/50 m-0 p-0 box-border;
   }
   body {
-    @apply bg-background text-foreground min-h-screen;
+    @apply bg-background text-foreground h-full;
   }
   html {
-    @apply font-sans antialiased min-h-screen;
+    @apply font-sans antialiased h-full;
   }
 }
 
@@ -173,7 +173,7 @@ h1 {
     @apply absolute top-0 left-0 w-full h-full z-100 flex items-center justify-center backdrop-blur-xs rounded-xl;
   }
   .loading-spinner {
-    @apply h-8 w-8 animate-spin rounded-full border-4 z-100 border-solid border-blue-600 border-t-transparent;
+    @apply h-8 w-8 animate-spin rounded-full border-4 z-100 border-solid border-[#A85B2E] border-t-transparent;
   }
 }
 
@@ -191,7 +191,7 @@ h1 {
     @apply flex gap-2 items-center;
   }
   .header-right {
-    @apply flex flex-row items-center space-x-3;
+    @apply flex flex-row items-center justify-center space-x-3;
   }
 
   .logout-container-mobile {
@@ -248,7 +248,7 @@ h1 {
     @apply text-gray-700;
   }
   .note-opener-container {
-    @apply bg-[#FAF3EE] rounded-md py-1 md:py-0 md:h-8 px-2 md:w-full flex flex-row w-80 items-center space-x-2 mt-3 border-[0.5px] border-gray-300 hover:border-[#D06D3D] transition cursor-pointer;
+    @apply bg-[#FAF3EE] rounded-md py-1 md:py-0 md:h-8 px-2 md:w-full flex flex-row min-w-fit items-center space-x-2 mt-3 border-[0.5px] border-gray-300 hover:border-[#D06D3D] transition cursor-pointer;
   }
   .loading-container {
     @apply flex items-center justify-center w-full h-20;
@@ -309,7 +309,7 @@ h1 {
   }
 
   .input-container-dark {
-    @apply flex flex-row items-center bg-[#1E231F] rounded-xl w-full md:w-75 h-10 max-w-md border-[0.5px] border-[#262B27];
+    @apply flex flex-row items-center bg-[#1E231F] rounded-xl w-full md:w-75 h-10 border-[0.5px] border-[#262B27];
   }
 
   .search-icon-dark {
@@ -342,7 +342,7 @@ h1 {
   }
 
   .note-opener-container-dark {
-    @apply bg-[#141815] rounded-md py-1 md:py-0 md:h-8 px-2 md:w-full flex flex-row w-80 items-center space-x-2 mt-3 border-[0.5px] border-[#262B27] hover:border-[#D06D3D] transition cursor-pointer;
+    @apply bg-[#141815] rounded-md py-1 md:py-0 md:h-8 px-2 md:w-full flex flex-row w-fit items-center space-x-2 mt-3 border-[0.5px] border-[#262B27] hover:border-[#D06D3D] transition cursor-pointer;
   }
 
   .note-opener-dark {

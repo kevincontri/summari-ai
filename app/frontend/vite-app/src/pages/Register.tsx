@@ -9,6 +9,7 @@ import { useThemeStore } from "../contexts/useThemeStore";
 import { Toaster } from "../components/ui/sonner";
 import { toast } from "sonner";
 import summariLogo from "../assets/summari-logo.svg";
+import DevAlert from "../components/DevAlert";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -16,6 +17,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [devAlert, setDevAlert] = useState(false);
 
   const theme = useThemeStore((state) => state.theme);
 
@@ -23,6 +25,7 @@ export default function Register() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+    setDevAlert(true);
 
     // Validation checks
     if (username.trim() === "" || email.trim() === "" || password.trim() === "") {
@@ -58,6 +61,7 @@ export default function Register() {
     }
 
     setLoading(false);
+    setDevAlert(false);
   };
 
   return (
@@ -134,6 +138,7 @@ export default function Register() {
         <Loading /> 
         }
       </div>
+      <DevAlert setDevAlert={setDevAlert} showAlert={devAlert} />
       <DarkModeSwitch />
     </>
   )

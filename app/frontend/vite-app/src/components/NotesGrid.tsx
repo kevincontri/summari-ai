@@ -1,12 +1,12 @@
 import type { NoteBase } from "../types/notes_types";
 import NoteCard from "./NoteCard";
 
-export default function NotesGrid({ notes, count, handleOpenNoteModal, onDelete, theme }: { notes: NoteBase[], count: number, handleOpenNoteModal: (id: number | null, bg_color?: string) => void, onDelete: (id: number) => void, theme: string }) {
+export default function NotesGrid({ notes, count, handleOpenNoteModal, onDelete, theme, searchQuery }: { notes: NoteBase[], count: number, handleOpenNoteModal: (id: number | null, bg_color?: string) => void, onDelete: (id: number) => void, theme: string, searchQuery: string }) {
   return (
     <div className="p-6">
       <div className="flex gap-2 items-baseline">
-        <h2 className={theme === 'dark' ? "notes-title-dark" : "notes-title"}>Your notes</h2>
-        <span className={theme === 'dark' ? "notes-count-dark" : "notes-count"}>{count} notes</span>
+        <h2 className={theme === 'dark' ? "notes-title-dark" : "notes-title"}>{`${searchQuery ? `Search results for "${searchQuery}"` : "Your notes"}`}</h2>
+        <span className={theme === 'dark' ? "notes-count-dark" : "notes-count"}>{`${searchQuery ? `${count} ${count === 1 ? "note" : "notes"} found` : notes.length === 0 ? `${count} notes found` : `${count} notes`}`}</span>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <button 
