@@ -8,12 +8,7 @@
 
 Summari is a full-stack application for storing, searching, and querying user content (notes, articles, ideas) and augmenting it with AI features such as embeddings, semantic search, and LLM answers grounded in the user's own notes. It pairs a FastAPI backend with a React + TypeScript frontend.
 
-<div align="center">
-  <h3>Video Demo (with text comments in Portuguese):</h3>
-  <video src="https://github.com/user-attachments/assets/7b202273-4bc5-4a5f-af6c-b3ae38de1479" width="640" controls >
-    Seu navegador não suporta vídeo.
-  </video>
-</div>
+### You can access Summari [Here](https://summari-ai-nzmf.onrender.com/login)
 
 ## Roadmap
 
